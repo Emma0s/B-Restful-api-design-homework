@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,6 +19,7 @@ import javax.validation.Valid;
 public class StudentController {
 
     private final StudentService studentService;
+    private final StudentDTO studentDTO;
 
     @PostMapping
     public ResponseEntity<StudentDTO> addNewStudent(@RequestBody @Valid AddStudentRequest addStudentRequest){
@@ -31,5 +33,15 @@ public class StudentController {
     public ResponseEntity deleteStudent(@PathVariable Integer studentId){
         studentService.deleteStudent(studentId);
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<StudentDTO> getStudents(@RequestParam(name = "gender",required = false) String gender){
+        if (gender==null){
+            return studentService.findStudents();
+        }else{
+            return studentService.findStudentsByGender(gender);
+        }
     }
 }
