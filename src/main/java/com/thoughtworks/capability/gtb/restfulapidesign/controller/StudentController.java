@@ -20,11 +20,16 @@ public class StudentController {
     private final StudentService studentService;
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<StudentDTO> addNewStudent(@RequestBody @Valid AddStudentRequest addStudentRequest){
         var student =  studentService.addNewStudent(addStudentRequest);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(student);
+    }
+
+    @DeleteMapping("/{studentId}")
+    public ResponseEntity deleteStudent(@PathVariable Integer studentId){
+        studentService.deleteStudent(studentId);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 }

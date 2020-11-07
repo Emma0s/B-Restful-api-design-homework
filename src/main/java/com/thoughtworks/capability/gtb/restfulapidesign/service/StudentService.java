@@ -17,4 +17,8 @@ public class StudentService {
         Integer studentId = studentData.addStudent(addStudentRequest);
         return studentData.getStudentDataById(studentId);
     }
+
+    public void deleteStudent(Integer studentId) {
+        studentData.deleteStudent(studentId);
+    }
 }

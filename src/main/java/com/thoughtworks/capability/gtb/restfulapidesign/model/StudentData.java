@@ -28,4 +28,7 @@ public class StudentData {
          return studentDTO.buildNewStudent(studentId, studentMap.get(studentId));
     }
 
+    public void deleteStudent(Integer studentId) {
+        studentMap.remove(studentId);
+    }
 }
