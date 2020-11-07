@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -20,13 +21,14 @@ import java.util.List;
 public class GroupController {
     private final GroupService groupService;
     private final StudentService studentService;
+    List<GroupsDTO> groups = new ArrayList<>();
 
     @PostMapping
     public ResponseEntity<List<GroupsDTO>> groupStudent(){
         GroupData.clear();
         var students = studentService.findStudents();
         Collections.shuffle(students);
-        List<GroupsDTO> groups = groupService.groupStudent();
+        groups = groupService.groupStudent();
         for (int stuIndex=0,groupIndex=0; stuIndex<students.size(); stuIndex++){
             if (groupIndex==6) groupIndex=0;
             groups.get(groupIndex).getStudentDTOList().add(students.get(stuIndex));
@@ -39,5 +41,10 @@ public class GroupController {
     public ResponseEntity<GroupsDTO> updateGroupsName(@RequestBody GroupRequestDTO groupRequestDTO){
         var group = groupService.updateGroupsName(groupRequestDTO.getId(), groupRequestDTO.getName());
         return ResponseEntity.status(HttpStatus.OK).body(group);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<GroupsDTO>> getGroupStudent(){
+        return ResponseEntity.status(HttpStatus.OK).body(groups);
     }
 }
