@@ -31,4 +31,8 @@ public class StudentService {
     public List<StudentDTO> findStudentsByGender(String gender) {
         return studentData.getStudentsByGender(gender);
     }
+
+    public StudentDTO getStudentById(Integer studentId) {
+        return studentData.getStudentDataById(studentId);
+    }
 }

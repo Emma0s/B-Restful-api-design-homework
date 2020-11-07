@@ -19,7 +19,6 @@ import java.util.List;
 public class StudentController {
 
     private final StudentService studentService;
-    private final StudentDTO studentDTO;
 
     @PostMapping
     public ResponseEntity<StudentDTO> addNewStudent(@RequestBody @Valid AddStudentRequest addStudentRequest){
@@ -43,5 +42,11 @@ public class StudentController {
         }else{
             return studentService.findStudentsByGender(gender);
         }
+    }
+
+    @GetMapping("/{studentId}")
+    public ResponseEntity getStudentById(@PathVariable Integer studentId){
+        var student = studentService.getStudentById(studentId);
+        return ResponseEntity.status(HttpStatus.OK).body(student);
     }
 }
