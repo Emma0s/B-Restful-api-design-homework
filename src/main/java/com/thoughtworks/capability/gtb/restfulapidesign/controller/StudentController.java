@@ -4,6 +4,7 @@ package com.thoughtworks.capability.gtb.restfulapidesign.controller;
 import com.thoughtworks.capability.gtb.restfulapidesign.dto.StudentDTO;
 import com.thoughtworks.capability.gtb.restfulapidesign.service.AddStudentRequest;
 import com.thoughtworks.capability.gtb.restfulapidesign.service.StudentService;
+import com.thoughtworks.capability.gtb.restfulapidesign.service.UpdateStudentRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.var;
 import org.springframework.http.HttpStatus;
@@ -47,6 +48,12 @@ public class StudentController {
     @GetMapping("/{studentId}")
     public ResponseEntity getStudentById(@PathVariable Integer studentId){
         var student = studentService.getStudentById(studentId);
+        return ResponseEntity.status(HttpStatus.OK).body(student);
+    }
+
+    @PatchMapping("/{studentId}")
+    public ResponseEntity updateStudentById(@PathVariable Integer studentId, @Valid @RequestBody UpdateStudentRequest request){
+        var student = studentService.updateStudent(studentId, request);
         return ResponseEntity.status(HttpStatus.OK).body(student);
     }
 }

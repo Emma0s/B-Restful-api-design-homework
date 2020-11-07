@@ -1,19 +1,15 @@
 package com.thoughtworks.capability.gtb.restfulapidesign.service;
 
-import lombok.*;
-
-import javax.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class AddStudentRequest {
+public class UpdateStudentRequest {
 
-    @NotBlank
     private String name;
-    @NotBlank
     private String gender;
     private String note;
 }

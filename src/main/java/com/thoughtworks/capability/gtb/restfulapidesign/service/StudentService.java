@@ -35,4 +35,8 @@ public class StudentService {
     public StudentDTO getStudentById(Integer studentId) {
         return studentData.getStudentDataById(studentId);
     }
+
+    public StudentDTO updateStudent(Integer studentId, UpdateStudentRequest request) {
+        return studentData.updateStudentData(studentId,request);
+    }
 }
