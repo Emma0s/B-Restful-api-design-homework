@@ -15,6 +15,10 @@ public class StudentDTO {
     private String gender;
     private String note;
 
+    public static StudentDTO defaultStudent(){
+        return StudentDTO.builder().id(1).name("wenwei").gender("female").note("").build();
+    }
+
     public static StudentDTOBuilder buildBaseStudent(Integer id, AddStudentRequest addStudentRequest) {
         return StudentDTO.builder()
                 .id(id)
