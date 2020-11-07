@@ -1,5 +1,6 @@
 package com.thoughtworks.capability.gtb.restfulapidesign.controller;
 
+import com.thoughtworks.capability.gtb.restfulapidesign.dto.GroupRequestDTO;
 import com.thoughtworks.capability.gtb.restfulapidesign.dto.GroupsDTO;
 import com.thoughtworks.capability.gtb.restfulapidesign.model.GroupData;
 import com.thoughtworks.capability.gtb.restfulapidesign.service.GroupService;
@@ -8,9 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.var;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
@@ -36,5 +35,9 @@ public class GroupController {
         return ResponseEntity.status(HttpStatus.CREATED).body(groups);
     }
 
-
+    @PatchMapping()
+    public ResponseEntity<GroupsDTO> updateGroupsName(@RequestBody GroupRequestDTO groupRequestDTO){
+        var group = groupService.updateGroupsName(groupRequestDTO.getId(), groupRequestDTO.getName());
+        return ResponseEntity.status(HttpStatus.OK).body(group);
+    }
 }

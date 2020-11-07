@@ -18,4 +18,8 @@ public class GroupService {
     public List<GroupsDTO> groupStudent() {
         return groupData.groupStudent();
     }
+
+    public GroupsDTO updateGroupsName(Integer groupId, String groupName) {
+        return groupData.updateGroupsName(groupId,groupName);
+    }
 }
