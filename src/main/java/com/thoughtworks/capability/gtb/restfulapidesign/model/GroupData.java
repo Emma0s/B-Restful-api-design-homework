@@ -11,8 +11,9 @@ import java.util.List;
 public class GroupData {
 
     private static final List<GroupsDTO> groupsDTOList = new ArrayList<>();
-    private static final boolean isInitialed = false;
+    private static boolean isInitialed = false;
     private static void initGroups() {
+        isInitialed = true;
         List<StudentDTO> team1Student = new ArrayList<>();
         GroupsDTO groupsDTO1 = new GroupsDTO(0, "team1", "", team1Student);
         List<StudentDTO> team2Student = new ArrayList<>();
